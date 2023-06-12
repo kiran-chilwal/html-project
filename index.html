@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Highlight Repeated Words</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    
+    <p id="paragraph">kiran kiran kiran kiran</p>
+
+    <script src="script.js"></script>
 </body>
+<script>
+    window.onload = function() {
+    var paragraph = document.getElementById("paragraph");
+    var words = paragraph.innerHTML.split(" ");
+
+    for (var i = 0; i < words.length; i++) {
+        var currentWord = words[i];
+
+        // Check if the word has already occurred before
+        if (words.indexOf(currentWord) == i) {
+            // Create a new span element with the highlighted class
+            var span = document.createElement("span");
+            span.className = "highlight";
+            span.innerHTML = currentWord + " ";
+
+            // Replace the word in the paragraph with the highlighted version
+            paragraph.innerHTML = paragraph.innerHTML.replace(currentWord + " ", span.outerHTML);
+        }
+    }
+};
+
+</script>
 </html>
